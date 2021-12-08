@@ -8,9 +8,11 @@ router.get("/", (_, res) => {
 });
 
 router.post("/register", (req, res) => {
-  const { username, password } = req.body;
-  adminController.create(username, password);
-  res.send("Post request");
-});
+  try {
+  const { username, password } = req;
+  const newUser = await adminController.create(username, password);
+  res.json(newUser);
+  console.log(req.body.controllers(username, password));}
+  catch(err) res.status(400).json({message: err.message});)}
 
 export default router;
