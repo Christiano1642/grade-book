@@ -1,5 +1,6 @@
 import express from "express";
 import config from "./config.js";
+import isAuth from "./middleware/isAuth.js";
 import router from "./routes/index.js";
 
 const app = express();
@@ -9,6 +10,7 @@ app.get("/", (_, res) => {
 });
 
 app.use(express.json());
+app.use(isAuth);
 app.use("/api", router);
 
 app.listen(config.port, () => {
