@@ -7,10 +7,16 @@ router.get("/", (_, res) => {
   res.send("Hello World!");
 });
 
-router.post("/students", async (req, res) => {
-  if (req.isAuth) {
-    const students = await studentsController.index();
-    res.send(students);
+router.post("/alumni", async ({ isAuth }, res) => {
+  if (isAuth.role === "ADMIN") {
+    try {
+      const students = await studentsController.index();
+      res.json(students);
+    } catch ({ message }) {
+      res.status(500).send({ message });
+    }
+  } else {
+    res.status(401).send({ message: "Access Denied" });
   }
 });
 
