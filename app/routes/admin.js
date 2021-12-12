@@ -16,10 +16,19 @@ router.post("/register", async (req, res) => {
     if (errors.length) {
       throw new Error(errors.join("\n"));
     }
-    console.log(admin);
+
     await adminController.create(admin);
     const jwt = await adminController.show(admin);
 
+    res.status(201).json(jwt);
+  } catch ({ message }) {
+    res.status(400).json({ message });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  try {
+    const jwt = await adminController.show(req.body);
     res.status(201).json(jwt);
   } catch ({ message }) {
     res.status(400).json({ message });
