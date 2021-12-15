@@ -4,3 +4,4 @@ export default class User {
     this.password = password;
   }
 }
+// Class that represents username and password

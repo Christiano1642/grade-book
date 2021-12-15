@@ -5,6 +5,7 @@ import config from "../config.js";
 
 const admin = client.db(config.db.name).collection("admin");
 
+// Our admin controller that creates and shows our admin accounts
 export default {
   async create({ username, password, role }) {
     const existingUser = await admin.findOne({ username });

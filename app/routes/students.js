@@ -6,7 +6,9 @@ const router = new Router();
 router.get("/", (_, res) => {
   res.send("Hello World!");
 });
+// NOTE: Those with auth = ADMIN are only available to admin users.
 
+// Will show the admin all of the students in the database
 router.post("/alumni", async ({ isAuth }, res) => {
   if (isAuth.role === "ADMIN") {
     try {
@@ -20,6 +22,7 @@ router.post("/alumni", async ({ isAuth }, res) => {
   }
 });
 
+// This will show one specific student to the admin
 router.post("/:id", async ({ isAuth, params }, res) => {
   if (isAuth === "ADMIN") {
     try {
@@ -33,6 +36,7 @@ router.post("/:id", async ({ isAuth, params }, res) => {
   }
 });
 
+// This will update the students grade
 router.put("/grade/:id", async ({ isAuth, body, params }, res) => {
   if (isAuth.role === "ADMIN") {
     try {

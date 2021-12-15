@@ -5,6 +5,7 @@ import config from "../config.js";
 const student = client.db(config.db.name).collection("student");
 
 export default {
+  // Controller that can show students all or individualy and update their grades
   index() {
     return student.find().toArray();
   },

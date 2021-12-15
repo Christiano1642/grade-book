@@ -8,6 +8,7 @@ router.get("/", (_, res) => {
   res.send("Hello Admin!");
 });
 
+// We create an admin user with username and password
 router.post("/register", async (req, res) => {
   try {
     const admin = new Admin(req.body);
@@ -26,6 +27,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// login the admin
 router.post("/login", async (req, res) => {
   try {
     const jwt = await adminController.show(req.body);

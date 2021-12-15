@@ -8,7 +8,7 @@ const router = new Router();
 router.get("/", (_, res) => {
   res.send("Hello World!");
 });
-
+// An index for all the routes in the router folder
 router.use("/admin", adminRouter);
 router.use("/students", studentsRouter);
 router.use("/assignments", assignmentsRouter);
